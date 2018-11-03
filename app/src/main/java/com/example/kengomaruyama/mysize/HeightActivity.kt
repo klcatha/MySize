@@ -2,6 +2,7 @@ package com.example.kengomaruyama.mysize
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
@@ -31,5 +32,10 @@ class HeightActivity : AppCompatActivity() {
                     override
                     fun onNothingSelected(parent: AdapterView<*>?){}
                 }
+        PreferenceManager.getDefaultSharedPreferences(this).apply {
+            val heightVal = getInt("HEIGHT", 160)
+            height.setText(heightVal.toString())
+            seekBar.progress = heightVal
+        }
     }
 }
