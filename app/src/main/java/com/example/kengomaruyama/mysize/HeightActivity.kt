@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.widget.AdapterView
+import android.widget.SeekBar
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_height.*
 import java.text.FieldPosition
@@ -37,5 +38,27 @@ class HeightActivity : AppCompatActivity() {
             height.setText(heightVal.toString())
             seekBar.progress = heightVal
         }
+
+        seekBar.setOnSeekBarChangeListener(
+                object : SeekBar.OnSeekBarChangeListener {
+                    override fun onProgressChanged(seekBar: SeekBar?,
+                                                   progress: Int,
+                                                   fromUser: Boolean) {
+                        height.text = progress.toString()
+                    }
+
+                    override
+                    fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+                    override
+                    fun onStopTrackingTouch(seekBar: SeekBar?) {}
+                })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        PreferenceManager.getDefaultSharedPreferences(this).edit()
+                .putInt("HEIGHT", height.text.toString().toInt())
+                .apply()
     }
 }
