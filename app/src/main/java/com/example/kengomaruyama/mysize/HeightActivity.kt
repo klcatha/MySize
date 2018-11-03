@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import android.widget.SeekBar
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_height.*
-import java.text.FieldPosition
 
 class HeightActivity : AppCompatActivity() {
 
