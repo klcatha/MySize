@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
 import android.widget.AdapterView
+import android.widget.RadioButton
 import android.widget.SeekBar
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_height.*
@@ -32,6 +33,12 @@ class HeightActivity : AppCompatActivity() {
                     override
                     fun onNothingSelected(parent: AdapterView<*>?){}
                 }
+
+        radioGroup.setOnCheckedChangeListener{
+            group, checkedId ->
+            height.text = findViewById<RadioButton>(checkedId).text
+        }
+        
         PreferenceManager.getDefaultSharedPreferences(this).apply {
             val heightVal = getInt("HEIGHT", 160)
             height.setText(heightVal.toString())
