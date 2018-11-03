@@ -38,7 +38,7 @@ class HeightActivity : AppCompatActivity() {
             group, checkedId ->
             height.text = findViewById<RadioButton>(checkedId).text
         }
-        
+
         PreferenceManager.getDefaultSharedPreferences(this).apply {
             val heightVal = getInt("HEIGHT", 160)
             height.setText(heightVal.toString())
